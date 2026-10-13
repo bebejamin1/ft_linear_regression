@@ -6,11 +6,17 @@
 # Un programme qui calcule la précision de votre algorithme.
 
 from src.parsing import parser
+# from src.prog import
 
 
 def main() -> None:
-    parser("data/data.csv")
+    value = parser("data/data.csv")
+    print(value)
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+
+    except KeyboardInterrupt:
+        print("tchao")

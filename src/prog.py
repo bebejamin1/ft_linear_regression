@@ -10,6 +10,9 @@
 #  Avant l'exécution du programme d'entraînement, theta0 et theta1 seront
 # initialisés à 0
 
+def estimatePrice(value: int) -> None:
+    pass
+
 
 # DEUXIEME PROGRAMME: learningRate
 # Il lira votre fichier de données et effectuera une régression linéaire sur les données.  # noqa
@@ -24,3 +27,6 @@
 # x = km
 # y = price
 # m = nbr dans le jeu de donner
+
+def learningRate() -> None:
+    pass

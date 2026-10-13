@@ -1,8 +1,4 @@
 # parse le .csv
-# verrifier la date de modification du fichier csv
-# pour permettre de verifier que le jeu de donner nas pas changer depuis
-# le dernier entrainement
-
 # parser le theta
 
 
@@ -13,23 +9,32 @@ import os
 from pathlib import Path
 
 
-def parser(filepath: str) -> dict:
+# *****************************************************************************
+# *                               parser()                                    *
+# *                                                                           *
+
+def parser(filepath: str) -> list:
 
     try:
         dir = Path("data")
         dir.mkdir(exist_ok=True)
         data_list = []
+        coord = set()
+
         with open(filepath, 'r') as fcsv:
             f = csv.DictReader(fcsv)
 
             for row in f:
                 for k, v in row.items():
+                    coord.add(k)
                     try:
                         if not (isinstance(v, int)):
                             row[k] = int(v)
+
                     except ValueError:
                         print(f"La valeur {k}: {v} n'est pas une INTEGER, par "
                               "conséquent cette valeur a été ignorée")
+
                 data_list.append(row)
 
     except FileNotFoundError:
@@ -38,8 +43,12 @@ def parser(filepath: str) -> dict:
               "le dossier data")
         exit()
 
-    return (data_list)
+    return [data_list, tuple(coord)]
 
+
+# *****************************************************************************
+# *                       create_theta_file()                                 *
+# *                                                                           *
 
 def create_theta_file(theta0: float, theta1: float) -> None:
 
@@ -48,12 +57,26 @@ def create_theta_file(theta0: float, theta1: float) -> None:
 
     content = {"theta0": theta0, "theta1": theta1}
 
-    with open("data/theta.pkl", "w") as f:
+    with open("data/theta.pkl", "wb") as f:
         pickle.dump(content, f)
 
 
+# *****************************************************************************
+# *                        take_theta_file()                                  *
+# *                                                                           *
+
 def take_theta_file() -> dict:
     if not (os.path.exists("data/theta.pkl")):
-        print("Lancez un learning rate avant tout")
+        print("Lancez un learningRate avant tout !" + "\n"
+              "Aucun fichier theta trouvé")
+        exit()
 
-    with
+    try:
+        with open("data/theta.pkl", 'rb') as f:
+            content = pickle.load(f)
+
+    except Exception:
+        print("Le fichier est corrompu, relancer un learningRate")
+        exit()
+
+    return (content)
