@@ -2,6 +2,7 @@
 import os
 
 from prog import estimatePrice, learningRate
+from parsing import create_theta_file
 from tqdm import tqdm
 
 
@@ -24,7 +25,8 @@ def estimate_display() -> None:
     print("\n" + "estimatePrice(value)".center(79, " ") + "\n\n")
 
     print("Écrivez exit pour quitter le programme")
-    value = input("Indiquez votre nombre de kilométrage: ")
+    value = input("Indiquez votre nombre de kilométrage: ").rstrip("")
+
     if (value == "exit"):
         exit()
 
@@ -41,13 +43,15 @@ def estimate_display() -> None:
 # *                                                                           *
 
 
-def learning_display() -> None:
+def learning_display(data: list) -> None:
     os.system("clear")
 
     print("\n" + "learningRate()".center(79, " ") + "\n\n")
+    create_theta_file(0.0, 0.0)
 
-    theta0, theta1 = 0
-    for _ in tqdm(range(100), desc="Training Process"):
-        learningRate()
+    for _ in tqdm(range(10000000), desc="Training Process"):
+        theta0, theta1 = learningRate(data)
+        # print(theta0, theta1)
+        create_theta_file(theta0, theta1)
 
     exit()

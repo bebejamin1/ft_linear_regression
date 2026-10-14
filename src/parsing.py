@@ -21,6 +21,9 @@ def parser(filepath: str) -> list:
         data_list = []
         coord = set()
 
+        if not (os.path.exists("data/theta.pkl")):
+            create_theta_file(0.0, 0.0)
+
         with open(filepath, 'r') as fcsv:
             f = csv.DictReader(fcsv)
 
@@ -42,6 +45,9 @@ def parser(filepath: str) -> list:
               "Veuillez mettre un fichier .csv avec un jeu de données dans"
               "le dossier data")
         exit()
+
+    except Exception:
+        print("pb")
 
     return [data_list, tuple(coord)]
 
@@ -65,7 +71,7 @@ def create_theta_file(theta0: float, theta1: float) -> None:
 # *                        take_theta_file()                                  *
 # *                                                                           *
 
-def take_theta_file() -> dict:
+def take_theta_file() -> tuple:
     if not (os.path.exists("data/theta.pkl")):
         print("\n" + "Lancez un learningRate avant tout !" + "\n"
               "Aucun fichier theta trouvé")
@@ -73,10 +79,10 @@ def take_theta_file() -> dict:
 
     try:
         with open("data/theta.pkl", 'rb') as f:
-            content = pickle.load(f)
+            c = pickle.load(f)
 
     except Exception:
         print("Le fichier est corrompu, relancer un learningRate")
         exit()
 
-    return (content)
+    return (c["theta0"], c["theta1"])

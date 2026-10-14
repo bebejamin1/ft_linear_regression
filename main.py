@@ -22,13 +22,12 @@ def dispatch(choice: any) -> None:
         main()
 
     data, coord = parser("data/data.csv")
-    X, Y = coord
 
     if (choice == 1):
         estimate_display()
 
     if (choice == 2):
-        learning_display()
+        learning_display(data)
 
     if (choice == 3):
         exit()
