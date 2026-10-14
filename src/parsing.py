@@ -67,7 +67,7 @@ def create_theta_file(theta0: float, theta1: float) -> None:
 
 def take_theta_file() -> dict:
     if not (os.path.exists("data/theta.pkl")):
-        print("Lancez un learningRate avant tout !" + "\n"
+        print("\n" + "Lancez un learningRate avant tout !" + "\n"
               "Aucun fichier theta trouvé")
         exit()
 
