@@ -1,7 +1,7 @@
 [project]
-name = "ft-linear-regression"
+name = "ft_linear_regression"
 version = "0.1.0"
-description = "Add your description here"
+description = "Programme d'apprentissage automatique supervisé qui établit une relation linéaire"
 readme = "README.md"
 authors = [
     { email = "beaurainbenjamin1@gmail.com" }
@@ -9,11 +9,5 @@ authors = [
 requires-python = ">=3.14"
 dependencies = [
 	"tqdm>=4.70.1",
+	"matplotlib>=3.11.0",
 ]
-
-[project.scripts]
-ft-linear-regression = "ft_linear_regression:main"
-
-[build-system]
-requires = ["uv_build>=0.13.1,<0.14.0"]
-build-backend = "uv_build"

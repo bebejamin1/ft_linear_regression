@@ -10,7 +10,7 @@
 #  Avant l'exécution du programme d'entraînement, theta0 et theta1 seront
 # initialisés à 0
 
-from parsing import take_theta_file
+from .parsing import take_theta_file
 
 
 # *****************************************************************************
@@ -21,16 +21,17 @@ def estimatePrice(value: int) -> int:
     result = 0
 
     theta0, theta1 = take_theta_file()
-    print(theta0, theta1)
 
     if (theta0 == 0 or theta1 == 0):
         print("\n" + "Lancez un learningRate avant tout!" + "\n"
               "Vos valeurs theta sont à 0")
         exit()
 
-    result = theta0 + (theta1 * value)
+    normalized_value = value / 100000.0
+    normalized_result = theta0 + (theta1 * normalized_value)
+    result = normalized_result * 10000.0
 
-    return (result)
+    return (int(result))
 
 # DEUXIEME PROGRAMME: learningRate
 # Il lira votre fichier de données et effectuera une régression linéaire sur les données.  # noqa
@@ -52,11 +53,10 @@ def estimatePrice(value: int) -> int:
 # *                             learningRate()                                *
 # *                                                                           *
 
+LEARNING_RATE = 0.01
 
-LEARNING_RATE = 0.00000000001
 
-
-def learningRate(data) -> None:
+def learningRate(data) -> tuple:
     m = len(data)
     somme0 = 0.0
     somme1 = 0.0
@@ -64,8 +64,8 @@ def learningRate(data) -> None:
 
     for row in data:
         try:
-            km = row['km']
-            price = row['price']
+            km = row['km'] / 100000.0
+            price = row['price'] / 10000.0
 
         except KeyError:
             print("\n" + "Le data csv ne convient pas, veuillez le remplacer")

@@ -1,8 +1,9 @@
 
 import os
 
-from prog import estimatePrice, learningRate
-from parsing import create_theta_file
+from .prog import estimatePrice, learningRate
+from .parsing import create_theta_file
+from .graph import make_graph_data_only, make_graph_with_regression
 from tqdm import tqdm
 
 
@@ -13,6 +14,8 @@ from tqdm import tqdm
 def check_int(value) -> int:
     try:
         value = int(value)
+        if (value < 0):
+            raise ValueError()
     except ValueError:
         estimate_display()
 
@@ -34,6 +37,10 @@ def estimate_display() -> None:
 
     price = estimatePrice(value)
 
+    if (price <= 0):
+        print("\n" + f"Votre voiture n'a plus de valeur avec {value}km")
+        exit()
+
     print("\n" + f"Nous vous indiquons un prix de {price}€ pour {value}km")
     exit()
 
@@ -49,9 +56,13 @@ def learning_display(data: list) -> None:
     print("\n" + "learningRate()".center(79, " ") + "\n\n")
     create_theta_file(0.0, 0.0)
 
-    for _ in tqdm(range(10000000), desc="Training Process"):
+    for _ in tqdm(range(10000), desc="Training Process"):
         theta0, theta1 = learningRate(data)
-        # print(theta0, theta1)
         create_theta_file(theta0, theta1)
 
+    make_graph_data_only(data)
+    make_graph_with_regression(data, theta0, theta1)
+
+    print("\nEntraînement terminé! "
+          f"Theta0: {theta0:.4f}, Theta1: {theta1:.4f}")
     exit()
