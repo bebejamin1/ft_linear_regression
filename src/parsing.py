@@ -19,7 +19,7 @@ def parser(filepath: str) -> list:
         dir = Path("data")
         dir.mkdir(exist_ok=True)
         data_list = []
-        coord = set()
+        check = set()
 
         if not (os.path.exists("data/theta.pkl")):
             create_theta_file(0.0, 0.0)
@@ -28,17 +28,27 @@ def parser(filepath: str) -> list:
             f = csv.DictReader(fcsv)
 
             for row in f:
-                for k, v in row.items():
-                    coord.add(k)
-                    try:
-                        if not (isinstance(v, int)):
-                            row[k] = int(v)
+                for k in row.keys():
+                    print()
+                    check.add(k)
 
-                    except ValueError:
-                        print(f"La valeur {k}: {v} n'est pas une INTEGER, par "
-                              "conséquent cette valeur a été ignorée")
+                if not (row.get("km") or row.get("price")):
+                    continue
 
-                data_list.append(row)
+                km = row.get("km")
+                price = row.get("price")
+
+                try:
+                    km = int(km)
+                    price = int(price)
+
+                except ValueError:
+                    continue
+
+                if (km < 0 or price < 0):
+                    continue
+
+                data_list.append({"km": km, "price": price})
 
     except FileNotFoundError:
         print("Fichier introuvable !" + "\n"
@@ -47,9 +57,22 @@ def parser(filepath: str) -> list:
         exit()
 
     except Exception:
-        print("pb")
+        print("\n" + "Le data.csv n'est pas conforme, les entêtes doivent être"
+              " km et price" + "\n")
+        exit()
 
-    return [data_list, tuple(coord)]
+    if (len(data_list) < 2):
+        print("Le data.csv ne contient pas assez de données, minimum 2")
+        exit()
+
+    print
+
+    if (check[0] != "km" or check[1] != "price"):
+        print("\n" + "Le header du data.csv nest pas conforme"
+              f"{check[0], check[1]} -> km, price" + "\n")
+        exit()
+
+    return (data_list)
 
 
 # *****************************************************************************
