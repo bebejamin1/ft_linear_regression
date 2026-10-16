@@ -60,7 +60,7 @@ uv sync
 
 ### 2. Lancer le projet
 
-Lancez le programme d'entraînement pour lire les données et calculer les $\theta$ :
+Lancez le programme et choisissez d'estimer un prix ou d'entraîner vos thêta :
 
 ```bash
 uv run python3 -m linear_regression
@@ -92,6 +92,26 @@ $$tmp\theta_1 = learningRate * \frac{1}{m} \sum_{i=0}^{m-1} (estimatePrice(milea
 *   $learningRate$ : La taille des "pas" que fait l'algorithme pour corriger son erreur. (Un pas trop grand et l'algorithme se perd, un pas trop petit et l'apprentissage est beaucoup trop long).
 
 *(Note : Dans le code, les données sont normalisées avant d'appliquer ces formules afin d'éviter les dépassements de mémoire et d'accélérer l'apprentissage).*
+
+### 1. Les données initiales (Le problème).
+Tout commence par un jeu de données brut. Dans votre projet, il s'agit du kilométrage d'une voiture par rapport à son prix. Si l'on place ces données sur un graphique (ici, l'axe horizontal serait le kilométrage et l'axe vertical le prix), on obtient un nuage de points.
+L'objectif de la régression linéaire est de trouver une tendance claire dans ce chaos apparent.
+<img width="2752" height="1536" alt="1" src="https://github.com/user-attachments/assets/b439201f-0cfb-4203-9c39-fe2b2353b92c" />
+
+
+### 2. La droite de régression (La solution)
+La régression linéaire consiste à tracer la droite qui s'ajuste le mieux à tous ces points (la ligne de meilleur ajustement).
+L'équation de cette droite est définie par votre hypothèse : Prix estimé = theta0 + (theta1 * kilométrage).
+Une fois cette ligne rouge tracée, vous pouvez prédire la valeur d'un point (le prix) pour n'importe quelle valeur sur l'axe horizontal (le kilométrage), même si cette voiture n'existait pas dans votre jeu de données de base.
+<img width="2752" height="1536" alt="2" src="https://github.com/user-attachments/assets/756de152-87b3-4772-91b4-4c5645bed84e" />
+
+
+### 3. La descente de gradient (L'apprentissage)
+Mais comment l'algorithme trouve-t-il la position parfaite pour cette ligne rouge ? Il utilise un concept appelé la Descente de Gradient.
+Imaginez une vallée en forme de bol : la hauteur représente "l'erreur" de votre droite (la distance entre votre ligne et les vrais points de données).
+L'algorithme démarre avec une ligne au hasard (en haut du bol, où l'erreur est très grande) et fait de petits pas vers le bas, en ajustant theta0 et theta1. Il s'arrête lorsqu'il atteint le fond du bol, ce qui correspond à l'erreur minimale. C'est à cet instant précis que la ligne rouge est parfaitement ajustée !
+<img width="2752" height="1536" alt="3" src="https://github.com/user-attachments/assets/804acc30-303a-4b20-9493-dc6186905988" />
+
 
 ---
 
