@@ -1,6 +1,3 @@
-# parse le .csv
-# parser le theta
-
 
 import csv
 import pickle
@@ -18,8 +15,11 @@ def parser(filepath: str) -> list:
     try:
         dir = Path("data")
         dir.mkdir(exist_ok=True)
+        dir = Path("img")
+        dir.mkdir(exist_ok=True)
+
         data_list = []
-        check = set()
+        check = []
 
         if not (os.path.exists("data/theta.pkl")):
             create_theta_file(0.0, 0.0)
@@ -28,9 +28,11 @@ def parser(filepath: str) -> list:
             f = csv.DictReader(fcsv)
 
             for row in f:
+                if (len(row) > 2 or len(row) < 2):
+                    continue
+
                 for k in row.keys():
-                    print()
-                    check.add(k)
+                    check.append(k)
 
                 if not (row.get("km") or row.get("price")):
                     continue
@@ -65,11 +67,9 @@ def parser(filepath: str) -> list:
         print("Le data.csv ne contient pas assez de données, minimum 2")
         exit()
 
-    print
-
     if (check[0] != "km" or check[1] != "price"):
         print("\n" + "Le header du data.csv nest pas conforme"
-              f"{check[0], check[1]} -> km, price" + "\n")
+              f" {check[0], check[1]} -> km, price" + "\n")
         exit()
 
     return (data_list)

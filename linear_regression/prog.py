@@ -63,7 +63,6 @@ def learningRate(data) -> tuple:
     theta0, theta1 = take_theta_file()
 
     for row in data:
-        print(row)
         try:
             km = row['km'] / 100000.0
             price = row['price'] / 10000.0

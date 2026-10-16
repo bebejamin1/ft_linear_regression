@@ -1,14 +1,9 @@
 
-# BONUS EXAMPLE
-# Tracer les données dans un graphique afin de visualiser leur répartition.
-# Tracer, dans le même graphique, la droite résultant de votre régression
-# linéaire, pour voir le fruit de votre dur travail !
-# Un programme qui calcule la précision de votre algorithme.
 
 import os
 
-from src.parsing import parser
-from src.display import estimate_display, learning_display
+from linear_regression.parsing import parser
+from linear_regression.display import estimate_display, learning_display
 
 
 def dispatch(choice: any, data: list) -> None:
