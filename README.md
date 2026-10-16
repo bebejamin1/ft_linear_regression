@@ -3,6 +3,11 @@
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Linear%20Regression-success.svg)
 
+
+## 🎬​ Preview 
+<img width="800" height="530" alt="ft_lr" src="https://github.com/user-attachments/assets/9a615372-728c-44c3-9b70-c2c4001bc747" />
+
+
 Ce projet est une introduction aux concepts fondamentaux du **Machine Learning**. L'objectif est de créer un algorithme capable de **prédire le prix d'une voiture en fonction de son kilométrage**.
 
 Pour ce faire, nous n'utilisons pas de bibliothèques mathématiques complexes toutes faites (comme `scikit-learn` ou `numpy.polyfit`). Nous implémentons nous-mêmes un algorithme d'apprentissage automatique basique : **la régression linéaire avec descente de gradient**.
