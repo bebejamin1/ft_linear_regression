@@ -1,5 +1,3 @@
-# graph sur le dataset de base
-# graph sur le dataset avec la droite regrassion lineaire
 
 import matplotlib.pyplot as plt
 

@@ -18,8 +18,8 @@ Si nous plaçons ces données sur un graphique (Kilométrage en X, Prix en Y), n
 <img width="1000" height="600" alt="dataset" src="https://github.com/user-attachments/assets/c5828012-86fc-4c4c-b6b9-5b3720572cf1" />
 *Exemple de nos données : chaque point représente une voiture avec son kilométrage et son prix.*
 
-**Le but du jeu (et de notre algorithme) :** 
-Trouver et tracer la "meilleure ligne droite" possible qui traverse ce nuage de points. 
+**Le but du jeu (et de notre algorithme) :**
+Trouver et tracer la "meilleure ligne droite" possible qui traverse ce nuage de points.
 Une fois cette ligne tracée, si l'on me donne un nouveau kilométrage, je n'ai qu'à regarder où il tombe sur ma ligne pour deviner le prix !
 
 <img width="1000" height="600" alt="with_regression" src="https://github.com/user-attachments/assets/ef02d7b3-6c76-4e52-9cd8-9dff271afece" />
@@ -31,9 +31,9 @@ Une fois cette ligne tracée, si l'on me donne un nouveau kilométrage, je n'ai 
 
 Le projet est divisé en deux programmes distincts, conformément aux consignes :
 
-1. **Le programme d'entraînement (Train) :** 
+1. **Le programme d'entraînement (Train) :**
    Il lit le fichier de données (`data.csv`), analyse les kilométrages et les prix, et "entraîne" le modèle. Il calcule les variables $\theta_0$ et $\theta_1$ (les coefficients de notre ligne droite) et les sauvegarde dans un fichier (`theta.pkl`).
-2. **Le programme de prédiction (Predict) :** 
+2. **Le programme de prédiction (Predict) :**
    Il demande à l'utilisateur de saisir un kilométrage, charge les variables $\theta_0$ et $\theta_1$ précédemment calculées, et affiche le prix estimé. Si l'entraînement n'a pas encore été fait, les variables valent 0 et le prix estimé sera de 0.
 
 **🌟 Bonus implémentés :**
@@ -52,33 +52,19 @@ Ce projet utilise **Python**. Les dépendances et l'environnement virtuel sont g
 Clonez le dépôt et installez les dépendances :
 
 ```bash
-git clone <votre_repo>
+git clone https://github.com/bebejamin1/ft_linear_regression.git
 cd ft_linear_regression
 # Si vous utilisez uv (recommandé pour ce projet) :
 uv sync
-# Ou via pip classique :
-pip install .
 ```
 
-### 2. Entraîner le modèle
+### 2. Lancer le projet
 
 Lancez le programme d'entraînement pour lire les données et calculer les $\theta$ :
 
 ```bash
-python -m linear_regression train data/data.csv
+uv run python3 -m linear_regression
 ```
-*(Ceci va générer et sauvegarder le fichier `data/theta.pkl` et afficher les graphiques de résultat).*
-
-### 3. Prédire un prix
-
-Lancez le programme de prédiction :
-
-```bash
-python -m linear_regression predict
-```
-Le programme vous demandera : `Veuillez entrer un kilométrage :`. Entrez un nombre et il vous retournera le prix estimé !
-
----
 
 ## 🧮 Sous le capot : Les Mathématiques
 
@@ -93,8 +79,8 @@ $$estimatePrice(mileage) = \theta_0 + (\theta_1 * mileage)$$
 *   $\theta_1$ (Thêta 1) : La pente de la ligne (la perte de valeur par kilomètre parcouru).
 
 ### L'Apprentissage : La Descente de Gradient
-Au début, $\theta_0$ et $\theta_1$ valent `0`. La ligne est donc horizontale à zéro. Ce n'est pas bon. 
-Pour corriger cela, l'algorithme va calculer "l'erreur" (la différence entre le prix estimé par notre ligne actuelle et le prix réel dans nos données) et ajuster les $\theta$ pas à pas pour réduire cette erreur. 
+Au début, $\theta_0$ et $\theta_1$ valent `0`. La ligne est donc horizontale à zéro. Ce n'est pas bon.
+Pour corriger cela, l'algorithme va calculer "l'erreur" (la différence entre le prix estimé par notre ligne actuelle et le prix réel dans nos données) et ajuster les $\theta$ pas à pas pour réduire cette erreur.
 
 Voici les formules utilisées simultanément à chaque itération (boucle) :
 

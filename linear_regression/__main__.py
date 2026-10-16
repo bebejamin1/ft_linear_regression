@@ -1,10 +1,13 @@
 
-
 import os
 
 from linear_regression.parsing import parser
 from linear_regression.display import estimate_display, learning_display
 
+
+# *****************************************************************************
+# *                            dispatch()                                     *
+# *                                                                           *
 
 def dispatch(choice: any, data: list) -> None:
     os.system("clear")
@@ -26,6 +29,10 @@ def dispatch(choice: any, data: list) -> None:
 
     main()
 
+
+# *****************************************************************************
+# *                              main()                                       *
+# *                                                                           *
 
 def main() -> None:
     os.system("clear")
