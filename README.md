@@ -1,4 +1,4 @@
-# 🚗 ft_linear_regression : Introduction au Machine Learning
+# ft_linear_regression : Introduction au Machine Learning
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Linear%20Regression-success.svg)
