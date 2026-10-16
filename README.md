@@ -4,7 +4,7 @@
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Linear%20Regression-success.svg)
 
 
-## 🎬​ Preview 
+## 🎬​ Preview
 <img width="800" height="530" alt="ft_lr" src="https://github.com/user-attachments/assets/9a615372-728c-44c3-9b70-c2c4001bc747" />
 
 
@@ -116,6 +116,44 @@ Mais comment l'algorithme trouve-t-il la position parfaite pour cette ligne roug
 Imaginez une vallée en forme de bol : la hauteur représente "l'erreur" de votre droite (la distance entre votre ligne et les vrais points de données).
 L'algorithme démarre avec une ligne au hasard (en haut du bol, où l'erreur est très grande) et fait de petits pas vers le bas, en ajustant theta0 et theta1. Il s'arrête lorsqu'il atteint le fond du bol, ce qui correspond à l'erreur minimale. C'est à cet instant précis que la ligne rouge est parfaitement ajustée !
 <img width="2752" height="1536" alt="3" src="https://github.com/user-attachments/assets/804acc30-303a-4b20-9493-dc6186905988" />
+
+### 🔍 Exemple pas-à-pas : Comment la machine apprend-elle vraiment ?
+
+Pour démystifier ces mathématiques, faisons "tourner" l'algorithme à la main sur sa toute première itération, avec un mini jeu de données de 3 voitures.
+*(Pour simplifier la lecture : $x = 1$ signifie 10 000 km, $y = 8$ signifie 8 000 €).*
+
+| 🚗 Voiture | Kilométrage ($x$) | Prix Réel ($y$) |
+| :--- | :---: | :---: |
+| **#1** | 1 | 8 |
+| **#2** | 2 | 6 |
+| **#3** | 3 | 4 |
+
+**Conditions de départ :**
+* $\theta_0 = 0$ et $\theta_1 = 0$ (L'algorithme n'a encore rien appris).
+* Taux d'apprentissage (`learning_rate`) = $0.1$.
+
+#### Étape 1 : Le constat des erreurs
+L'algorithme teste sa formule actuelle `Prix estimé = 0 + (0 * km)` sur chaque voiture :
+
+* **Voiture 1 :** Il prédit 0€. Elle en vaut 8. L'erreur est de **-8**.
+* **Voiture 2 :** Il prédit 0€. Elle en vaut 6. L'erreur est de **-6**.
+* **Voiture 3 :** Il prédit 0€. Elle en vaut 4. L'erreur est de **-4**.
+
+Il additionne ensuite toutes ces erreurs (avec une pondération mathématique pour $\theta_1$).
+
+#### Étape 2 : La correction (Le calcul du Gradient)
+Une fois toutes les voitures analysées, l'algorithme utilise la somme de ses erreurs pour calculer comment corriger son tir. En appliquant les formules vues plus haut, il calcule des valeurs de correction temporaires :
+* Correction pour $\theta_0$ : `-0.6`
+* Correction pour $\theta_1$ : `-1.066`
+
+#### Étape 3 : La mise à jour
+L'algorithme met à jour ses connaissances (les fameux $\theta$) en y soustrayant ces corrections :
+* Nouveau $\theta_0 = 0 - (-0.6) = \mathbf{0.6}$
+* Nouveau $\theta_1 = 0 - (-1.066) = \mathbf{1.066}$
+
+**🎉 Fin de la première boucle (Epoch 1) !**
+L'algorithme a compris que ses prix étaient trop bas. Pour son prochain passage, sa formule de prédiction ne sera plus `0 + (0 * km)`, mais `0.6 + (1.066 * km)`.
+Il va répéter cette boucle de constat/correction des milliers de fois, jusqu'à ce que son erreur soit la plus proche possible de zéro !
 
 
 ---
