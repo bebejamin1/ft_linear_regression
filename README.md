@@ -44,7 +44,6 @@ Le projet est divisé en deux programmes distincts, conformément aux consignes 
 **🌟 Bonus implémentés :**
 * Affichage graphique des données (nuage de points).
 * Affichage de la ligne de régression sur le graphique.
-* Calcul de la précision de l'algorithme (ex: calcul du coût ou du score de précision).
 
 ---
 
