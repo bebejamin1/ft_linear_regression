@@ -15,14 +15,14 @@ Imaginez que vous vouliez vendre votre voiture. Vous regardez les annonces de vo
 
 Si nous plaçons ces données sur un graphique (Kilométrage en X, Prix en Y), nous obtenons un nuage de points :
 
-![Données brutes](img/dataset.png)
+<img width="1000" height="600" alt="dataset" src="https://github.com/user-attachments/assets/c5828012-86fc-4c4c-b6b9-5b3720572cf1" />
 *Exemple de nos données : chaque point représente une voiture avec son kilométrage et son prix.*
 
 **Le but du jeu (et de notre algorithme) :** 
 Trouver et tracer la "meilleure ligne droite" possible qui traverse ce nuage de points. 
 Une fois cette ligne tracée, si l'on me donne un nouveau kilométrage, je n'ai qu'à regarder où il tombe sur ma ligne pour deviner le prix !
 
-![Régression linéaire](img/with_regression.png)
+<img width="1000" height="600" alt="with_regression" src="https://github.com/user-attachments/assets/ef02d7b3-6c76-4e52-9cd8-9dff271afece" />
 *Notre algorithme a "appris" à tracer cette ligne rouge. C'est notre modèle prédictif.*
 
 ---
